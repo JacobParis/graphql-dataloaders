@@ -1,36 +1,36 @@
 /**
  * Lesson 09 - Add a post loader
- * 
+ *
  * Lets take advantage of the reusability of the dataloader
- * 
+ *
  * and clone our userLoader to make a postLoader
- * 
- * Make a post resolver that takes an ID as an argument, 
- * and calls postLoader.load 
- * 
+ *
+ * Make a post resolver that takes an ID as an argument,
+ * and calls postLoader.load
+ *
  * Then to the schema, add post, id String, returning a Post
- * 
- * And now try that new query out 
- * 
+ *
+ * And now try that new query out
+ *
  * Look at ID 2 here, we'll try to query that one specifically
- * 
+ *
  * Now give ID 3 a shot
- * 
+ *
  * And everything is working wonderfully
  */
 
-const { ApolloServer, gql } = require('apollo-server')
-const DataLoader = require('dataloader');
+const { ApolloServer, gql } = require("apollo-server");
+const DataLoader = require("dataloader");
 
-const sql = require('knex')({
-  client: 'pg',
+const sql = require("knex")({
+  client: "pg",
   connection: {
-    host : '127.0.0.1',
-    port : 5432,
-    user : 'postgres',
-    password : 'password',
-    database : 'postgres'
-  }
+    host: "127.0.0.1",
+    port: 5432,
+    user: "postgres",
+    password: "password",
+    database: "postgres",
+  },
 });
 
 // A schema is a collection of type definitions (hence "typeDefs")
@@ -52,48 +52,44 @@ const typeDefs = gql`
     id: String
     name: String
   }
-`
+`;
 
 const resolvers = {
   Query: {
     posts() {
       // Executes once per query
-      console.log('SELECT * from posts')
-      return sql('posts').select('*')
+      console.log("SELECT * from posts");
+      return sql("posts").select("*");
     },
     post(parent, { id }, { postLoader }) {
       // Executes once per query
-      return postLoader.load(id)
-    }
+      return postLoader.load(id);
+    },
   },
   Post: {
     async author(post, args, { userLoader }) {
       // Executes once per post per query
-      return userLoader.load(post.author_id)
+      return userLoader.load(post.author_id);
     },
   },
-}
+};
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   async context() {
     return {
-      userLoader: new DataLoader(keys => sql
-        .select('*')
-        .from('users')
-        .whereIn('id', keys)
+      userLoader: new DataLoader((keys) =>
+        sql.select("*").from("users").whereIn("id", keys)
       ),
-      postLoader: new DataLoader(keys => sql
-        .select('*')
-        .from('posts')
-        .whereIn('id', keys)
-      )
-    }
-  }
-})
+      postLoader: new DataLoader((keys) =>
+        sql.select("*").from("posts").whereIn("id", keys)
+      ),
+    };
+  },
+});
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
-})
+});
