@@ -6,6 +6,21 @@
  * 
  * Lets add that to the schema, returning an Int, and then test the query out
  * 
+    query {
+      posts {
+        id
+        commentCount
+        comments {
+          id
+          text
+          author {
+            id
+            name
+          }
+        }
+      }
+    }
+ * 
  * Getting a few zeroes and a 5, so the count is being returned correctly
  * 
  * If we are always going query both "commentCount" and the list of "comments" at the same time,

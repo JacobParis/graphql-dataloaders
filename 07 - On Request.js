@@ -21,6 +21,18 @@
  * And it will be available as the third argument to every single resolver
  * 
  * Now we can see the caching and batching working flawlessly on a per-request level
+ * 
+    query {
+      posts {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+ * 
  */
 const { ApolloServer, gql } = require('apollo-server')
 

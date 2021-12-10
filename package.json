@@ -4,8 +4,8 @@
   "description": "To start a local PostGRES database, run the following command:",
   "main": "index.js",
   "scripts": {
-    "prestart": "docker compose build",
-    "start": "docker compose up -d"
+    "prestart": "docker-compose build",
+    "start": "docker-compose up -d"
   },
   "keywords": [],
   "author": "",

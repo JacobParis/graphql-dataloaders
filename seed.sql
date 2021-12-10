@@ -1,10 +1,10 @@
-\ c template1;
+\c template1;
 
 DROP DATABASE IF EXISTS postgres;
 
 CREATE DATABASE postgres;
 
-\ c postgres;
+\c postgres;
 
 CREATE TABLE IF NOT EXISTS users (id VARCHAR PRIMARY KEY, name VARCHAR);
 

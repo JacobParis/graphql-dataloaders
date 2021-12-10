@@ -11,7 +11,21 @@
  * Lets query the posts, and we can see every item
  * in the database is returned
  * 
+    query {
+      posts {
+        id
+        title
+      }
+    }
+ *
  * And the users query does the same for the users
+ * 
+    query {
+      users {
+        id
+        name
+      }
+    }
  * 
  * So what we're looking to accomplish here is to
  * extend the Post query to also return the user
@@ -27,6 +41,17 @@
  * and since we only want one, grab the first one from the array
  *
  * Lets try that request out, with the author, ID, and name
+ * 
+    query {
+      posts {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
  * 
  * And we get all the author information for each post
  * 

@@ -1,0 +1,20 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - init: docker-compose build
+    command: docker-compose up
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3000
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - rangav.vscode-thunder-client
+    - graphql.vscode-graphql
+    - esbenp.prettier-vscode
+    - dbaeumer.vscode-eslint
+    - sleistner.vscode-fileutils
+    - oderwat.indent-rainbow
+    - christian-kohler.npm-intellisense
+    - christian-kohler.path-intellisense

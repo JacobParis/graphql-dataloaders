@@ -17,7 +17,18 @@
  * 
  * We can send the same request multiple times and it still hits the
  * database every time.
- * 
+ *
+    query {
+      posts {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    } 
+ *
  * We'll give the cache a "promises" object that will work like a Map or Dictionary
  * The keys in the object are the user IDs we've tried to load, and the values
  * are the database request for that user ID

@@ -16,6 +16,22 @@
  *
  * Update the resolver to use the new loader, and you can run the query again
  * but it will show the same output as before.
+ * 
+    query {
+      posts {
+        id
+        commentCount
+        comments {
+          id
+          text
+          author {
+            id
+            name
+          }
+        }
+      }
+    }
+ * 
  */
 const { ApolloServer, gql } = require("apollo-server")
 const DataLoader = require("dataloader")

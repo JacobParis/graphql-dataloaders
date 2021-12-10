@@ -24,6 +24,20 @@
  * Lets try querying the posts, we'll get all their comments
  * and each id, text, author id, and author name
  *
+    query {
+      posts {
+        id
+        comments {
+          id
+          text
+          author {
+            id
+            name
+          }
+        }
+      }
+    }
+ * 
  * No comments for the first few, looks like 5 comments on this one, 2 comments here
  *
  * All the information is right where it's supposed to be

@@ -16,6 +16,18 @@
  *
  * Test the code again, and it looks like all the results are still returning
  * correctly
+ * 
+    query {
+      posts {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+ * 
  */
 const { ApolloServer, gql } = require("apollo-server");
 const DataLoader = require("dataloader");

@@ -42,6 +42,17 @@
  * 
  * Lets test this out
  * 
+    query {
+      posts {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+ * 
  * One request for posts, and one request for all of the users at once. Before,
  * 1000 posts would do 1000 individual author requests. Now it will be 1 request
  * no matter how many posts we have

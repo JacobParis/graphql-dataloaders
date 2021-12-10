@@ -14,8 +14,31 @@
  *
  * Look at ID 2 here, we'll try to query that one specifically
  *
+ *
+    query {
+      post(id: "2") {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+ * 
  * Now give ID 3 a shot
  *
+    query {
+      post(id: "3") {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+ * 
  * And everything is working wonderfully
  */
 

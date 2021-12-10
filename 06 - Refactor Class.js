@@ -24,6 +24,17 @@
  *
  * Replace the old cache load call with the userLoader call and try it out!
  *
+    query {
+      posts {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+ * 
  * Looks like everything still works and the refactor was successful
  */
 const { ApolloServer, gql } = require("apollo-server")
