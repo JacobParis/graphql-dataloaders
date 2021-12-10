@@ -1,7 +1,7 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: docker-compose build
-    command: docker-compose up
+  - init: docker-compose build && npm i
+    command: docker-compose up -d
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
